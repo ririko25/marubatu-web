@@ -2,6 +2,8 @@
   <section>
     <h1 class="header">marubatu!</h1>
     <Board :board="game.board"></Board>
+    {{game.histories}}
+    <!-- <History></History> -->
   </section>
 </template>
 
