@@ -18,4 +18,10 @@ export default {
   build: {},
   modules: ['@nuxtjs/axios'],
   axios: {},
+  plugins: [
+    {
+      src: '~/plugins/socket.io',
+      ssr: false, // <-- this line is required
+    },
+  ],
 };

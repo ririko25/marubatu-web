@@ -36,8 +36,8 @@ export default class Board extends Vue {
         index: i,
         x: marubatu.Board.indexToPos(i)[0],
         y: marubatu.Board.indexToPos(i)[1],
-        v: c
-      })
+        v: c,
+      }),
     );
   }
   get boardInstance(): marubatu.Board {
@@ -62,9 +62,12 @@ export default class Board extends Vue {
       } else {
         this.addHistory("バツの勝ち");
       }
-      this.setBoard(marubatu.Board.parse("---------"));
+      const newBoard = "---------";
+      this.setBoard(marubatu.Board.parse(newBoard));
+      this.$socket.emit("BOARD", { board: newBoard });
     } else {
       this.setBoard(nextBoard);
+      this.$socket.emit("BOARD", { board: nextBoard.toString() });
     }
     // this.$store.commit("setBoard", this.boardInstance.play(cell.x, cell.y));
   }

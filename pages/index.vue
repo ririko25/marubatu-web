@@ -4,6 +4,9 @@
     <Board :board="game.board"></Board>
     {{game.histories}}
     <!-- <History></History> -->
+    <label for="chat-msg">ちゃっとめっせーじ</label>
+    <input type="text" id="chat-msg" v-model="message">
+    <button v-on:click="sendMessage">そうしん</button>
   </section>
 </template>
 
@@ -15,11 +18,16 @@ import Board from "~/components/Board.vue";
 
 @Component({
   components: {
-    Board
-  }
+    Board,
+  },
 })
 export default class extends Vue {
   @State game: Game;
+  message = "";
+
+  sendMessage() {
+    this.$socket.emit("POST_MESSAGE", { name: "nuxt", message: this.message });
+  }
 }
 </script>
 
