@@ -1,12 +1,12 @@
 <template>
   <section>
-    <h1 class="header">marubatu!</h1>
+    <h1 class="header">みんなでまるばつ</h1>
     <Board :board="game.board"></Board>
-    {{game.histories}}
+    <div>{{game.histories}}</div>
     <!-- <History></History> -->
-    <label for="chat-msg">ちゃっとめっせーじ</label>
+    <!-- <label for="chat-msg">ちゃっとめっせーじ</label>
     <input type="text" id="chat-msg" v-model="message">
-    <button v-on:click="sendMessage">そうしん</button>
+    <button v-on:click="sendMessage">そうしん</button>-->
   </section>
 </template>
 

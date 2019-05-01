@@ -1,16 +1,27 @@
 <template>
   <div class="board">
-    <h2>{{board}}</h2>
     <table>
-      <tr>
-        <td v-for="cell in top" :key="cell.index" class="cell" v-on:click="play(cell)">{{cell.v}}</td>
-      </tr>
-      <tr>
-        <td v-for="cell in center" :key="cell.index" class="cell" v-on:click="play(cell)">{{cell.v}}</td>
-      </tr>
-      <tr>
-        <td v-for="cell in bottom" :key="cell.index" class="cell" v-on:click="play(cell)">{{cell.v}}</td>
-      </tr>
+      <tbody>
+        <tr>
+          <td v-for="cell in top" :key="cell.index" class="cell" v-on:click="play(cell)">{{cell.v}}</td>
+        </tr>
+        <tr>
+          <td
+            v-for="cell in center"
+            :key="cell.index"
+            class="cell"
+            v-on:click="play(cell)"
+          >{{cell.v}}</td>
+        </tr>
+        <tr>
+          <td
+            v-for="cell in bottom"
+            :key="cell.index"
+            class="cell"
+            v-on:click="play(cell)"
+          >{{cell.v}}</td>
+        </tr>
+      </tbody>
     </table>
   </div>
 </template>
@@ -29,6 +40,10 @@ interface cellData {
 @Component({})
 export default class Board extends Vue {
   @Prop() board: string;
+
+  mounted() {
+    this.$socket.emit("REQUEST_BOARD");
+  }
 
   get cellDataList() {
     return this.boardInstance.cells.map(
