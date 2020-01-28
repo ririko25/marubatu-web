@@ -78,15 +78,11 @@ export default class Board extends Vue {
         this.addHistory("バツの勝ち");
       }
       const newBoard = "---------";
-      this.setBoard(marubatu.Board.parse(newBoard));
-      this.$socket.emit("BOARD", { board: newBoard });
+      this.$socket.emit("BOARD", { board: newBoard, lastPlay: null });
     } else {
-      this.setBoard(nextBoard);
-      this.$socket.emit("BOARD", { board: nextBoard.toString() });
+      this.$socket.emit("BOARD", { board: nextBoard.toString(), lastPlay: cell.index });
     }
-    // this.$store.commit("setBoard", this.boardInstance.play(cell.x, cell.y));
   }
-  @Mutation("setBoard") setBoard: (board: marubatu.Board) => void;
   @Mutation("addHistory") addHistory: (history: string) => void;
 }
 </script>

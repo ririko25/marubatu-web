@@ -1,6 +1,6 @@
-import {Game} from '~/types';
+import { Chat, Game } from '~/types';
 
 export interface RootState {
   game: Game;
-  messages: string[];
+  chat: Chat;
 }
