@@ -1,22 +1,37 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
-    "moduleResolution": "node",
-    "lib": ["esnext", "esnext.asynciterable", "dom"],
+    "target": "ES2018",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "lib": [
+      "ESNext",
+      "ESNext.AsyncIterable",
+      "DOM"
+    ],
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "allowJs": true,
     "sourceMap": true,
-    "strict": false,
+    "strict": true,
     "allowSyntheticDefaultImports": true,
+    "strictPropertyInitialization": false,
     "noImplicitAny": false,
     "noEmit": true,
     "baseUrl": ".",
     "resolveJsonModule": true,
     "paths": {
-      "~/*": ["./*"]
+      "~/*": [
+        "./*"
+      ],
+      "@/*": [
+        "./*"
+      ]
     },
-    "types": ["@nuxt/vue-app", "@types/node", "@types/webpack-env"]
+    "types": [
+      "@nuxt/vue-app",
+      "@types/node",
+      "@nuxt/types",
+      "@types/webpack-env"
+    ]
   }
 }

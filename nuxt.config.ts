@@ -15,6 +15,7 @@ export default {
   },
   loading: { color: "#3B8070" },
   css: [],
+  buildModules: ['@nuxt/typescript-build'],
   build: {},
   modules: ["@nuxtjs/axios"],
   axios: {},
