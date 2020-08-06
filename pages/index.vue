@@ -1,27 +1,26 @@
 <template>
-<section>
-  <header>
-    <img src alt>
-    <h1>○✖️ゲーム</h1>
-  </header>
-  <body>
-    <h1 class="header">みんなでまるばつ</h1>
-    <Board :board="game.board"></Board>
-    <div>{{game.histories}}</div>
-    <!-- <History></History> -->
-    <label for="chat-msg">ちゃっとめっせーじ</label>
-    <input type="text" id="chat-msg" v-model="message">
-    <button v-on:click="sendMessage">そうしん</button>
-    <div>{{chat.messages}}</div>
-  </body>
-</section>
+  <section>
+    <header>
+      <h1>○✖️ゲーム</h1>
+    </header>
+    <body>
+      <h1 class="header">みんなでまるばつ</h1>
+      <Board :board="game.board" />
+      <div>{{ game.histories }}</div>
+      <!-- <History></History> -->
+      <label for="chat-msg">ちゃっとめっせーじ</label>
+      <input id="chat-msg" v-model="message" type="text" />
+      <button @click="sendMessage">そうしん</button>
+      <div>{{ chat.messages }}</div>
+    </body>
+  </section>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "nuxt-property-decorator";
-import { State } from "vuex-class";
-import { Game, Chat } from "~/types";
-import Board from "~/components/Board.vue";
+import { Component, Vue } from 'nuxt-property-decorator';
+import { State } from 'vuex-class';
+import { Game, Chat } from '~/types';
+import Board from '~/components/Board.vue';
 
 @Component({
   components: {
@@ -31,19 +30,19 @@ import Board from "~/components/Board.vue";
 export default class extends Vue {
   @State game: Game;
   @State chat: Chat;
-  message = "";
+  message = '';
 
   sendMessage() {
-    this.$socket.emit("POST_MESSAGE", { name: "NoName", message: this.message });
+    this.$socket.emit('POST_MESSAGE', { name: 'NoName', message: this.message });
   }
 }
 </script>
 
 <style lang="scss" scoped>
-@import "~/assets/scss/style.scss";
+@import '~/assets/scss/style.scss';
 
 header {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #fff;
   height: 70px;
   h1 {

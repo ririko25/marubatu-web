@@ -1,6 +1,6 @@
-import * as marubatu from "marubatu";
-import { ActionTree, MutationTree } from "vuex";
-import { MessageData, RootState } from "~/types";
+import * as marubatu from 'marubatu';
+import { ActionTree, MutationTree } from 'vuex';
+import { MessageData, RootState } from '~/types';
 
 export const state = (): RootState => ({
   game: {
@@ -10,7 +10,7 @@ export const state = (): RootState => ({
   },
   chat: {
     messages: [],
-  }
+  },
 });
 
 export const mutations: MutationTree<RootState> = {
@@ -18,7 +18,7 @@ export const mutations: MutationTree<RootState> = {
     state.game.histories.push(history);
   },
   SOCKET_CONNECT(state: RootState, status: any) {
-    console.log("繋がったよ");
+    console.log('繋がったよ');
   },
   SOCKET_CHAT_MESSAGE(state: RootState, data: MessageData) {
     console.log(data);
@@ -31,7 +31,7 @@ export const mutations: MutationTree<RootState> = {
 };
 
 export const actions: ActionTree<RootState, RootState> = {
-  async nuxtServerInit({ commit }, context) {
-    commit("addHistory", "対戦開始！！！！");
+  nuxtServerInit({ commit }, context) {
+    commit('addHistory', '対戦開始！！！！');
   },
 };

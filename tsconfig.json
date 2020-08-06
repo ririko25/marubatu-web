@@ -3,11 +3,7 @@
     "target": "ES2018",
     "module": "ESNext",
     "moduleResolution": "Node",
-    "lib": [
-      "ESNext",
-      "ESNext.AsyncIterable",
-      "DOM"
-    ],
+    "lib": ["ESNext", "ESNext.AsyncIterable", "DOM"],
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "allowJs": true,
@@ -19,19 +15,11 @@
     "noEmit": true,
     "baseUrl": ".",
     "resolveJsonModule": true,
+    "noUnusedParameters": false,
     "paths": {
-      "~/*": [
-        "./*"
-      ],
-      "@/*": [
-        "./*"
-      ]
+      "~/*": ["./*"],
+      "@/*": ["./*"]
     },
-    "types": [
-      "@nuxt/vue-app",
-      "@types/node",
-      "@nuxt/types",
-      "@types/webpack-env"
-    ]
+    "types": ["@nuxt/vue-app", "@types/node", "@nuxt/types", "@types/webpack-env"]
   }
 }

@@ -3,23 +3,19 @@
     <table>
       <tbody>
         <tr>
-          <td v-for="cell in top" :key="cell.index" class="cell" v-on:click="play(cell)">{{cell.v}}</td>
+          <td v-for="cell in top" :key="cell.index" class="cell" @click="play(cell)">
+            {{ cell.v }}
+          </td>
         </tr>
         <tr>
-          <td
-            v-for="cell in center"
-            :key="cell.index"
-            class="cell"
-            v-on:click="play(cell)"
-          >{{cell.v}}</td>
+          <td v-for="cell in center" :key="cell.index" class="cell" @click="play(cell)">
+            {{ cell.v }}
+          </td>
         </tr>
         <tr>
-          <td
-            v-for="cell in bottom"
-            :key="cell.index"
-            class="cell"
-            v-on:click="play(cell)"
-          >{{cell.v}}</td>
+          <td v-for="cell in bottom" :key="cell.index" class="cell" @click="play(cell)">
+            {{ cell.v }}
+          </td>
         </tr>
       </tbody>
     </table>
@@ -27,8 +23,8 @@
 </template>
 
 <script lang="ts">
-import * as marubatu from "marubatu";
-import { Component, Prop, Vue, Mutation } from "nuxt-property-decorator";
+import * as marubatu from 'marubatu';
+import { Component, Prop, Vue, Mutation } from 'nuxt-property-decorator';
 
 interface cellData {
   index: number;
@@ -42,7 +38,7 @@ export default class Board extends Vue {
   @Prop() board: string;
 
   mounted() {
-    this.$socket.emit("REQUEST_BOARD");
+    this.$socket.emit('REQUEST_BOARD');
   }
 
   get cellDataList() {
@@ -55,35 +51,41 @@ export default class Board extends Vue {
       }),
     );
   }
+
   get boardInstance(): marubatu.Board {
     return marubatu.Board.parse(this.board);
   }
+
   get top() {
     return this.cellDataList.slice(0, 3);
   }
+
   get center() {
     return this.cellDataList.slice(3, 6);
   }
+
   get bottom() {
     return this.cellDataList.slice(6, 9);
   }
+
   play(cell: cellData) {
     const nextBoard = this.boardInstance.play(cell.x, cell.y);
     if (nextBoard.end()) {
       if (nextBoard.win(marubatu.CellValue.Maru)) {
-        this.addHistory("マルの勝ち");
+        this.addHistory('マルの勝ち');
       } else if (nextBoard.draw()) {
-        this.addHistory("引き分け");
+        this.addHistory('引き分け');
       } else {
-        this.addHistory("バツの勝ち");
+        this.addHistory('バツの勝ち');
       }
-      const newBoard = "---------";
-      this.$socket.emit("BOARD", { board: newBoard, lastPlay: null });
+      const newBoard = '---------';
+      this.$socket.emit('BOARD', { board: newBoard, lastPlay: null });
     } else {
-      this.$socket.emit("BOARD", { board: nextBoard.toString(), lastPlay: cell.index });
+      this.$socket.emit('BOARD', { board: nextBoard.toString(), lastPlay: cell.index });
     }
   }
-  @Mutation("addHistory") addHistory: (history: string) => void;
+
+  @Mutation('addHistory') addHistory: (history: string) => void;
 }
 </script>
 
