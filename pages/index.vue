@@ -17,8 +17,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'nuxt-property-decorator';
-import { State } from 'vuex-class';
+import { Component, State, Vue } from 'nuxt-property-decorator';
 import { Game, Chat } from '~/types';
 import Board from '~/components/Board.vue';
 
