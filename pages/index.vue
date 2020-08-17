@@ -17,8 +17,8 @@
 </template>
 
 <script lang="ts">
-import { Component, State, Vue } from 'nuxt-property-decorator';
-import { Game, Chat } from '~/types';
+import { Component, Mutation, State, Vue } from 'nuxt-property-decorator';
+import { Game, Chat, Player } from '~/types';
 import Board from '~/components/Board.vue';
 
 @Component({
@@ -27,13 +27,30 @@ import Board from '~/components/Board.vue';
   },
 })
 export default class extends Vue {
+  @State player: Player;
   @State game: Game;
   @State chat: Chat;
   message = '';
 
-  sendMessage() {
-    this.$socket.emit('POST_MESSAGE', { name: 'NoName', message: this.message });
+  mounted() {
+    this.seledtTeam('o');
+    this.getAllMessages();
   }
+
+  seledtTeam(team: string) {
+    this.$socket.emit('JOIN_ROOM', { team });
+    this.joinTeam(team);
+  }
+
+  getAllMessages() {
+    this.$socket.emit('GET_ALL_MESSAGES');
+  }
+
+  sendMessage() {
+    this.$socket.emit('POST_MESSAGE', { user: this.player.name, team: this.player.team, text: this.message });
+  }
+
+  @Mutation('joinTeam') joinTeam: (team: string) => void;
 }
 </script>
 

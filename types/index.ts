@@ -1,5 +1,10 @@
 export * from './state';
 
+export interface Player {
+  name: string;
+  team: string;
+}
+
 export interface Game {
   board: string;
   histories: string[];
@@ -11,6 +16,7 @@ export interface Chat {
 }
 
 export type MessageData = {
-  name: string;
-  message: string;
+  user: string;
+  team: string;
+  text: string;
 };
